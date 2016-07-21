@@ -1,28 +1,12 @@
 ## Minnesota Legislative Coordinating Commission
-### 2016 Elections mapping application
+### Minimal User Interface - NYT
 
-The **LCC Elections (webGL)** application is an open-source, full-stack, responsive (RWD) application, built with PostGIS, and Mapbox GL. 
+The **LCC Minimal-UI (Mapbox-GL)** mapping application is a minimally stylized user interface, inspired by the New York Times.
 
-See it in the wild at [http://gis.leg.mn](http://www.gis.leg.mn/iMaps/elections/2016/)
+See it in the wild at [http://gis.leg.mn/iMaps/minimal-ui](http://www.gis.leg.mn/iMaps/minimal-ui)
 
 ### What's included?
-- Code
-- Data (GeoJSON)
-  - MN United States Congressional Districts
-  - MN House Districts
-  - MN Senate Districts
-  - MN Municipal Boundaries
-  - MN Counties
-  - MN House, Senate, Congressional images
+- Bootstrap CSS & JS
+- jQuery
+- Mapbox GL 
 
-### What does it do?
-- Fun geodev tools
-  - Mapbox GL
-  - Geocodes addresses (Google JavaScript API authentication token required)
-  - Zooms to location on cellphones (application optimized using RWD)
-- Basic UI/UX
-  - Point and click on the map, or use the search bar to retrieve legislative data
-  - Click on a legislative member to retrieve members district boundary or website
-  - Add House/Senate overlay layers to geo-explore Minnesota's representative districts
-
-The GeoJSON in the data folder is used in the app to add overlay layers to the map, this saves time and allows the browser to cache the responses, thus increasing the load time speed significantly better than PostGIS queries.# LCC-Minimal-UI-NYT

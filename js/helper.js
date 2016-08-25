@@ -15,8 +15,8 @@ $( document ).ready(function() {
       //add new selections
     	$(this).addClass('active');
     	activeTab.selection = $(this).data('district');
-        activeTab.geography = $(this).data('geography');
-        activeTab.name = $(this).data('name');
+      activeTab.geography = $(this).data('geography');
+      activeTab.name = $(this).data('name');
     	// changeData(activeTab);
     })
 

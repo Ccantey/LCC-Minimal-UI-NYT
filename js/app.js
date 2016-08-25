@@ -1,4 +1,8 @@
-
+var activeTab = {
+  selection:"USPRS",
+  geography:"cty",
+  name:"COUNTYNAME"
+};
 
 function initialize(){
 	$("#map").height('800px');

@@ -17,7 +17,7 @@ $( document ).ready(function() {
     	activeTab.selection = $(this).data('district');
       activeTab.geography = $(this).data('geography');
       activeTab.name = $(this).data('name');
-    	// changeData(activeTab);
+    	console.log(activeTab);
     })
 
  });

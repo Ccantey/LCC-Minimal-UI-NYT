@@ -3,8 +3,20 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, minimal-ui, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="description" content="Interactive mapping of the 2016 Minnesota election.">
+    <meta name="author" content="Leg. Coordinating Commission GIS">
+    <meta name="keywords" content="Election, Map, LCC, Minnesota">
+    <!--Facebook Share customization open graph meta tags. https://developers.facebook.com/tools/debug/og/object/-->
+    <meta property="fb:app_id" content="192382917808790" />
+    <meta property="og:url"                content="http://www.gis.leg.mn/iMaps/elections/2016/" />
+    <meta property="og:type"               content="website" />
+    <meta property="og:title"              content="2016 Minnesota Election" />
+    <meta property="og:description"        content="Interactive mapping of the 2016 Minnesota election." />
+    <meta property="og:image"              content="http://www.gis.leg.mn/iMaps/elections/2016/capital-large.png" />
+
     <title>2016 MN Election Results</title>
 
     <!-- Latest compiled and minified CSS -->
@@ -12,10 +24,14 @@
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.20.1/mapbox-gl.css' rel='stylesheet' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.20.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.21.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.21.0/mapbox-gl.js'></script>
+    <script src='js/mapbox-gl-geocoder.js'></script>
+    <script src="https://use.fontawesome.com/d5029dad88.js"></script>
 
     <link rel="stylesheet" href="css/app.css">
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v1.3.0/mapbox-gl-geocoder.css' type='text/css' />
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,49 +42,72 @@
   </head>
   <body>
   <nav class="navbar navbar-default navbar-fixed-top">
-      <button class="home-button" data-href="http://www.gis.leg.mn">
+      <button id="home" class="home-button">
           <image src="img/capital.jpg"/>
           <span class="button-text">Home</span>
       </button>
 
       <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>          
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
+        <div id="navbar" class="navbar-center">
             <h5><a href="#">Legislative Coordinating Commission</a></h5>
-            <h5><a href="#about"><image src="img/ballot-box.jpg"/>Election 2016</a></h5>
+            <h5><image src="img/ballot-box.jpg"/>Election 2016</h5>
         </div><!--/.nav-collapse -->
 
+      </div>
+
+      <div class="btn-group share-group pull-right">
+        <button type="button" class="share-button dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Share <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li id="facebook">
+              <a href="https://www.facebook.com/dialog/share?app_id=192382917808790&redirect_uri=http%3A%2F%2Fwww.gis.leg.mn%2FiMaps%2FLegacy%2Findex.php&display=popup&href=http%3A%2F%2Fwww.gis.leg.mn%2FiMaps%2FLegacy%2F%23" target="_blank">
+                  <i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook
+              </a>
+          </li>
+
+          <li id="twitter">
+              <a href="http://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.gis.leg.mn%2FiMaps%2Felections%2F2016%2F&text=How%20every%20Minnesota%20precinct%20voted&hashtags=electionmap, minnesotavotes, mnleg, mapbox" target="_blank">
+                  <i class="fa fa-twitter" aria-hidden="true"></i> Twitter
+              </a>
+          </li>
+
+
+          <!-- https://www.linkedin.com/developer/apps/4241784/auth -->
+          <li id="linkedin">
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://gis.leg.mn/iMaps/elections/2016/&title=How%20every%20Minnesota%20precinct%20voted&source=Minnesota Election Map" target="_blank">
+                <i class="fa fa-linkedin-square" aria-hidden="true"></i> LinkedIn
+              </a>
+          </li>
+        </ul>
       </div>
   </nav>
 
     <div class="container">
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8 election-districts">
+          <ul class="election-navigation">
+            <li><a class="election-navigation-a active" data-district="USPRS" data-geography="cty" data-name="COUNTYNAME">Presidential</a></li>
+            <li><a class="election-navigation-a" data-district="USSEN" data-geography="cty" data-name="COUNTYNAME">U.S. Senate</a></li>
+            <li><a class="election-navigation-a" data-district="USREP" data-geography="cng" data-name="CONGDIST">U.S. Congress</a></li>
+            <li><a class="election-navigation-a" data-district="MNSEN" data-geography="sen" data-name="MNSENDIST">MN Senate</a></li>
+            <li><a class="election-navigation-a" data-district="MNLEG" data-geography="hse" data-name="MNLEGDIST">MN House</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-2"></div>
+      
 
-      <div class="election-districts">
-        <ul class="election-navigation">
-          <li><a class="election-navigation-a active">Presidential</a></li>
-          <li><a class="election-navigation-a">U.S. Senate</a></li>
-          <li><a class="election-navigation-a">U.S. Congress</a></li>
-          <li><a class="election-navigation-a">MN Senate</a></li>
-          <li><a class="election-navigation-a">MN House</a></li>
-        </ul>
-      </div>
       <div class="headline">
           <h1 class="headline-title">How every Minnesota precinct voted in the 2016 election.</h1>
-          <p class="lead">Use this document as a way to quickly start any new project.<br> It provides this text, sidebar navigation, and a Mapbox GL map.</p>
+          <p class="lead">Zoom in to view summary of each voting precinct. Click anywhere within Minnesota to see results. Toggle elections results above in red.</p>
       </div>
      
-      <div class="row">
+      
       <!-- <div class="col-sm-1"></div> -->
       <div class="graphic-containter">
 
-        <div class="col-sm-2 sidebar">
+        <div class="col-sm-3 sidebar">
           <div class="sidebar-results">
             <h4> Minnesota Results</h4>
           </div>
@@ -76,25 +115,25 @@
           <div class="sidebar-search">
             <div class="input-group">
               <label for="address">Find your precinct</label>
-              <input type="text" id="address" class="form-control" placeholder="Search for...">
+              <input type="text" id="address" class="form-control" placeholder="Enter address">
               <span class="input-group-btn">
-                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                <button id="search" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
               </span>
             </div><!-- /input-group -->
           </div>
           
 
           <div class="sidebar-multiple-maps">
+             <table id='features' class="table-condensed"></table>
           </div>
         </div>
-        <div id="map" class="col-sm-10 map-container">
-        </div>
+        <div id="map" class="col-sm-9 map-container"></div>
       </div>
       <!-- <div class="col-sm-1"></div> -->
       </div>
-
+  
     <footer>
-    Here be a footer
+    Source: Minnesota Secretary of State, Legislative Coordinating Commission.
     </footer>
 
     </div><!-- /.container -->
@@ -107,7 +146,9 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
     <script src="js/app.js"></script>
     <script src="js/helper.js"></script>
+
   </body>
 </html>

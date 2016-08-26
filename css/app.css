@@ -1,15 +1,37 @@
+/*Override bootstrap*/
+html, body {
+  height: 100%;
+  font-size:16px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+
+}
+.h4, h4{
+	font-size:1.5rem;
+}
+.h5, h5{
+	  font-size:1.25rem;
+}
+.lead{
+	font-size: 1.25rem;
+	font-weight: 300;
+}
 footer{
 	border-top: 1px solid #999;
 	color:#999;
-	font-size: .6875em
+	font-size: 11px;
 	line-height:10px;
 	margin: 25px -15px;
 	padding-top: 5px;
 }
 
-.mapbox-improve-map {
-    display: none;
+
+.navbar-default{
+	background-image: none;
+	background-color:#f6f6f6;
+	border:none ;
+	box-shadow: none ;
 }
+
 .container {
 	padding:0;
 }
@@ -27,6 +49,39 @@ footer{
 	font-weight: 300;
 }
 
+a:link {
+    color: #326891;
+    text-decoration: none;
+}
+
+a:hover {
+    /*color: #326891;*/
+    text-decoration: underline;
+}
+
+.navbar-brand{
+	padding:0;
+}
+
+#navbar{
+	float:center;
+}
+#navbar h5, #navbar a{
+	font-weight: bold;
+	color:#555;
+}
+
+.dropdown-menu{
+	margin: 25px 0 0;
+}
+.btn-group.open .dropdown-toggle {
+    box-shadow: none;
+}
+/*application CSS*/
+
+.mapbox-improve-map {
+    display: none;
+}
 .election-districts{
 	position:fixed;
 	left:16%;
@@ -36,9 +91,7 @@ footer{
 	text-align: center;
 	/*margin-bottom: 40px;*/
 }
-footer{
-	font-size:11px;
-}
+
 ul.election-navigation li{
 	display:inline-block;
 	font:400 14px/16px Helvetica, Arial, sans-serif;
@@ -102,27 +155,6 @@ ul.election-navigation li{
     display:none;
 }
 
-a:link {
-    color: #326891;
-    text-decoration: none;
-}
-
-a:hover {
-    /*color: #326891;*/
-    text-decoration: underline;
-}
-
-.navbar-brand{
-	padding:0;
-}
-
-#navbar{
-	float:center;
-}
-#navbar h5, #navbar a{
-	font-weight: bold;
-	color:#555;
-}
 
 .home-button{
 	position: absolute;
@@ -139,12 +171,7 @@ a:hover {
 	top:15px;
 }
 
-.dropdown-menu{
-	margin: 25px 0 0;
-}
-.btn-group.open .dropdown-toggle {
-    box-shadow: none;
-}
+
 .share-button{
 /*	position: relative;
 	right:7px;
@@ -171,8 +198,23 @@ a:hover {
 }
 
 .graphic-containter{
-	height:500px;
+	/*height:500px;*/
 }
+
+.affix {
+  top: 0;
+  width: 100%;
+}
+
+.affix-top {
+  width: 100%;
+}
+
+.affix-bottom {
+  position: absolute;
+  width: 100%;  
+}
+
 
 .sidebar{	
 	padding: 0 50px 10px 0;

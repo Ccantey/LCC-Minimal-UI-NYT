@@ -84,11 +84,13 @@ a:hover {
 }
 .election-districts{
 	position:fixed;
-	left:16%;
+	left:0;
+	width: 100%;
 	background-color: #fff;
 	margin-top:35px;
-	padding:20px;
+	padding:15px 0 0;
 	text-align: center;
+	z-index: 1001;
 	/*margin-bottom: 40px;*/
 }
 
@@ -201,25 +203,26 @@ ul.election-navigation li{
 	/*height:500px;*/
 }
 
-.affix {
-  top: 0;
+/*No affix for smaller devices*/
+.prefix{
+  position: relative !important;
+}
+
+.affix-container.affix {
+  left:5px;
+  top: 70px;
   width: 100%;
 }
 
-.affix-top {
-  width: 100%;
-}
-
-.affix-bottom {
-  position: absolute;
-  width: 100%;  
-}
 
 
 .sidebar{	
 	padding: 0 50px 10px 0;
 }
 
+#map{
+	float:right;
+}
 .map-container{
 	border: 1px solid #e6e6e6;
 	padding:0;
@@ -242,7 +245,17 @@ ul.election-navigation li{
 	text-align: left:;
 }
 }
-
+@media (max-width: 800px){
+	.affix-container.affix{
+		position:relative;
+	}
+	#map{
+		float:none;
+	}
+	.prefix{
+		margin:5%;
+	}
+}
 .winner-DFL{
 	color:steelblue;
 }

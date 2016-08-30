@@ -209,12 +209,20 @@ ul.election-navigation li{
 }
 
 .affix-container.affix {
-  left:5px;
+  /*left:5px;*/
   top: 70px;
-  width: 100%;
+  width: 25%;
+}
+.mapboxgl-ctrl-top-right.affix {
+  /*left:5px;*/
+  top: 100px;
+
 }
 
+.affix-container.affix > .sidebar{
 
+  width: 80%;
+}
 
 .sidebar{	
 	padding: 0 50px 10px 0;
@@ -246,14 +254,27 @@ ul.election-navigation li{
 }
 }
 @media (max-width: 800px){
+	.h5, h5{
+		font-size: 1rem;
+	}
 	.affix-container.affix{
 		position:relative;
+		width:100%;
+		top:0;
+		height:100%;
 	}
 	#map{
+
+		float:none;
+	}
+
+	.affix + #map{
+		height:300px !important;
+		margin-bottom: 300px;
 		float:none;
 	}
 	.prefix{
-		margin:5%;
+		margin: 0 5%;
 	}
 }
 .winner-DFL{

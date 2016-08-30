@@ -2,6 +2,11 @@ $( document ).ready(function() {
 	//kickoff map logic
     initialize();
 
+    $('.mapboxgl-ctrl-top-right').affix({
+      offset: {
+        top: 210
+      }
+    })
     $('.election-navigation-a').on('click', function(e){
     	e.preventDefault();
       //remove previous selections map methods give an example of how one would toggle layers

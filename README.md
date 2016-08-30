@@ -9,7 +9,10 @@ The **LCC Minimal-UI (Mapbox-GL)** mapping application is a minimally stylized u
 See it in the wild at [http://gis.leg.mn/iMaps/minimal-ui](http://www.gis.leg.mn/iMaps/minimal-ui)
 
 ### What's included?
-- Bootstrap CSS & JS
+- Bootstrap v3 CSS & JS 
+  - Bootstrap's `affix` method to leave map controls on page regardless of scoll position
+  - Bootsrap v4 fonts
 - jQuery
 - Mapbox GL 
+- Social media plugins
 

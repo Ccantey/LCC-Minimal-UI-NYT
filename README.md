@@ -6,7 +6,7 @@ The **LCC Minimal-UI (Mapbox-GL)** mapping application is a minimally stylized u
 <p align="center">
   <img src="https://github.com/Ccantey/LCC-Minimal-UI-NYT/blob/master/img/display.jpg" alt="mimimal view" width="80%"/>
 </p>
-See it in the wild at [http://gis.leg.mn/iMaps/minimal-ui](http://www.gis.leg.mn/iMaps/minimal-ui)
+See it in the wild at [http://gis.leg.mn](http://www.gis.leg.mn/iMaps/minimal-ui/)
 
 ### What's included?
 - Bootstrap v3 CSS & JS 

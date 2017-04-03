@@ -220,7 +220,7 @@ ul.election-navigation li{
 .mapboxgl-ctrl-top-right.affix {
   position: fixed;
   top: 80px;
-  right:6%;
+  right:5%;
 
 }
 
@@ -249,6 +249,10 @@ ul.election-navigation li{
 }
 
 @media (max-width: 620px) { 
+	.container-fluid{
+		margin-left:2%;
+		margin-right:2%;
+	}
 	.navbar-center h5:first-child {
 	    display: none;
 	}
@@ -256,7 +260,10 @@ ul.election-navigation li{
 	.navbar-center{
 	margin-left: 30px;
 	text-align: left:;
-}
+   }
+   .navbar, .navbar h5{
+   	font-size: .85rem;
+   }
 }
 @media (max-width: 800px){
 	.h5, h5{
@@ -273,11 +280,18 @@ ul.election-navigation li{
 		float:none;
 	}
 
-	.affix + #map{
+	.mapboxgl-ctrl-top-right.affix {
+	  position: relative;
+	  top: 0;
+	  right:0;
+
+	}
+
+/*	.affix + #map{
 		height:300px !important;
 		margin-bottom: 300px;
 		float:none;
-	}
+	}*/
 	.prefix{
 		margin: 0 5%;
 	}
